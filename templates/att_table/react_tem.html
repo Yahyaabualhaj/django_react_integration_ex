@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!--React script -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+
+</head>
+<body>
+{#{{ table | safe }}#}
+    <div id="root">
+
+
+
+    </div>
+<script>
+    const tableData = [
+      {
+        id: 1,
+        title: "Go to Market",
+        description: "Buy ingredients to prepare dinner",
+        completed: true
+      },
+      {
+        id: 2,
+        title: "Study",
+        description: "Read Algebra and History textbook for upcoming test",
+        completed: false
+      },
+      {
+        id: 3,
+        title: "Sally's books",
+        description: "Go to library to rent sally's books",
+        completed: true
+      },
+      {
+        id: 4,
+        title: "Article",
+        description: "Write article on how to use django with react",
+        completed: false
+      }
+    ];;
+</script>
+
+<script type="text/babel">
+
+    class Table extends React.Component {
+         {#constructor(props) {#}
+         {#   super(props);#}
+         {#       this.state = {#}
+         {#         table_head: [],#}
+         {#         table_data: [],#}
+         {##}
+         {#   };#}
+         {#}#}
+
+         tableRow= ()=> {
+             return this.props.Data.map( item => (
+               <tr>
+                 <td>{item.id}</td>
+                 <td>{item.title}</td>
+                 <td>{item.description}</td>
+               </tr>
+
+
+                 )
+
+             )
+         }
+
+         tableHead= ()=> {
+             const a=this.props.Data[0];
+             const head_item= Object.getOwnPropertyNames(a);
+             return head_item.map( item => (
+
+                 <th>{item}</th>
+
+                 )
+
+             )
+         }
+
+         render() {
+            return (
+                <table className="table table-bordered">
+                    <tr>{this.tableHead()}</tr>
+                    {this.tableRow()}
+                </table>
+
+            );
+         }
+    }
+    console.log(tableData)
+    ReactDOM.render(
+        <Table Data = { tableData  } />,
+        document.getElementById('root')
+    );
+
+</script>
+
+</body>
+</html>
+
